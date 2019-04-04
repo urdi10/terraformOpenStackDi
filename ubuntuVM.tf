@@ -5,7 +5,7 @@ variable "user_name" {default = "jjcanada"}
 ## 2. Abrir el archivo token.json generado en la operación curl y copiar el token de acceso
 
 variable "my_token" {
-  default = "gAAAAABcphnpSrof9T7-whVBjDQ-6jJuWQl-XqLnA2O7bCVcneJ1XNJrADGZMNnPq8pYrZ22cYNTN1FgYim56Nz0vHo55Dmo6nZa4IIsvY8VHvqYnE5dWODqTNu00Nma13aMYwo8ZqcGGbwlWZukOGEtMYBXtHN8T0mWGqcU8oWqXE1GyVU4FCs"  
+  default = "PASTE_YOUR_TOKEN_HERE"  
 }
 
 variable "project_name" {
