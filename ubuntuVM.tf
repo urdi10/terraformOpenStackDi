@@ -1,11 +1,11 @@
 ## 1. Generate the token to connect to OpenStack
-## curl -X POST http://192.168.64.12:5000/v2.0/tokens -d '{"auth":{"passwordCredentials":{"username":"aum865", "password":"PASSWORD"}, "tenantId":"bb6f28e13f7249409aab847252975d2f"}}' -H 'Content-type: application/json' > token.json
+## curl -X POST http://192.168.64.12:5000/v2.0/tokens -d '{"auth":{"passwordCredentials":{"username":"aum865", "password":"06ALex1196"}, "tenantId":"bb6f28e13f7249409aab847252975d2f"}}' -H 'Content-type: application/json' > token.json
 variable "user_name" {default = "aum865"}
 
 ## 2. Abrir el archivo token.json generado en la operación curl y copiar el token de acceso
 
 variable "my_token" {
-  default = "gAAAAABcr0xN9i1gmDLHHTdhEm1Md25LdzPBsku8SPakYfLc8qJop_5HmuqeXhcywS83R8pjDBcm4C1kM3Yb-y-ofr2U79Z-s-EQehs5sQefo4uP19qBLvVMuT0f4o4j8UeGHzH2VG9Hh92CdoW2b4E33Y9coTW2yPE8t9zzE3s7VnHeSocfKYs"  
+  default = "gAAAAABctJ_gbeHKri2cWOcZ727VY5Spe6bD1ATUB5D7XOpzv6s7cYVF08NiRzy5EJOMnk5ZMNA7pwCN3J1JlFDP07UEiptlUOFMp1ZoJLTpNRwUSg-RCqvhrZOi3sMyK7HRZMn1oRqoI4Y3xBM7WEbAHFuQJ1do_WnPZqRK5rdMiVMv8pcjXj0"  
 }
 
 variable "project_name" {
@@ -27,10 +27,10 @@ provider "openstack" {
 }
 
 ########################################
-# Crear la Virtual Machine
+# Crear la Virtual Machine: admin
 ########################################
 
-/*resource "openstack_compute_instance_v2" "mi_tf_instance" {
+resource "openstack_compute_instance_v2" "mi_tf_admin" {
   name      = "ub18vm-cnsa"
   availability_zone = "nova"
   image_id  = "9eabea01-c377-4911-9ee0-7276ae4ca820"    ## Ubuntu 18
@@ -53,8 +53,8 @@ resource "openstack_networking_floatingip_v2" "myip" {
 # Asociar la IP
 resource "openstack_compute_floatingip_associate_v2" "myip" {
   floating_ip = "${openstack_networking_floatingip_v2.myip.address}"
-  instance_id = "${openstack_compute_instance_v2.mi_tf_instance.id}"
-}*/
+  instance_id = "${openstack_compute_instance_v2.mi_tf_admin.id}"
+}
 
 ########################################
 # Crear la Virtual Machine: node1
@@ -115,5 +115,6 @@ resource "openstack_compute_floatingip_associate_v2" "myipnode2" {
   floating_ip = "${openstack_networking_floatingip_v2.myipnode2.address}"
   instance_id = "${openstack_compute_instance_v2.mi_tf_node2.id}"
 }
+
 
 
